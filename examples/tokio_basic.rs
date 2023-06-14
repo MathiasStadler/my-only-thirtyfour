@@ -37,7 +37,7 @@ async fn run() -> color_eyre::Result<()> {
 
     // Look for header to implicitly wait for the page to load.
     driver.find(By::ClassName("firstHeading")).await?;
-    assert_eq!(driver.title().await?, "Selenium - Wikipedia");
+    assert_eq!(driver.title().await?, "Selenium – Wikipedia");
 
     // Always explicitly close the browser. There are no async destructors.
     driver.quit().await?;
