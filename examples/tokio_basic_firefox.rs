@@ -7,8 +7,9 @@
 //!     cargo run --example tokio_async
 
 use thirtyfour::prelude::*;
+use thirtyfour::{DesiredCapabilities, WebDriver};
 
-pub use common::capabilities::firefox::FirefoxCapabilities;
+//pub use common::capabilities::firefox::FirefoxCapabilities;
 
 fn main() -> color_eyre::Result<()> {
     let rt: tokio::runtime::Runtime = tokio::runtime::Builder::new_current_thread().enable_all().build()?;
@@ -23,7 +24,7 @@ async fn run() -> color_eyre::Result<()> {
 //https://docs.rs/thirtyfour/0.31.0/thirtyfour/common/capabilities/firefox/struct.FirefoxCapabilities.html
     let caps: thirtyfour::FirefoxCapabilities = DesiredCapabilities::firefox();
     
-    let driver = WebDriver::new("http://localhost:9515", caps).await?;
+    let driver = WebDriver::new("http://localhost:4444", caps).await?;
     // Navigate to https://wikipedia.org.
     driver.goto("https://wikipedia.org").await?;
     let elem_form = driver.find(By::Id("search-form")).await?;
@@ -32,7 +33,7 @@ async fn run() -> color_eyre::Result<()> {
     let elem_text = elem_form.find(By::Id("searchInput")).await?;
 
     // Type in the search terms.
-    elem_text.send_keys("selenium").await?;
+    elem_text.send_keys("rust").await?;
 
     // Click the search button.
     let elem_button = elem_form.find(By::Css("button[type='submit']")).await?;
