@@ -1,0 +1,9 @@
+#check correct DISPLAY
+echo $DISPLAY
+
+#and set it of 
+export DISPLAY=:0
+
+cargo run --example tokio_basic
+
+cargo run --example tokio_basic_firefox

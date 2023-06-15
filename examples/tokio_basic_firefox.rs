@@ -24,19 +24,24 @@ async fn run() -> color_eyre::Result<()> {
 //https://docs.rs/thirtyfour/0.31.0/thirtyfour/common/capabilities/firefox/struct.FirefoxCapabilities.html
     let caps: thirtyfour::FirefoxCapabilities = DesiredCapabilities::firefox();
     
-    let driver = WebDriver::new("http://localhost:4444", caps).await?;
+
+
+
+    let driver: WebDriver = WebDriver::new("http://localhost:4444", caps).await?;
+    
     // Navigate to https://wikipedia.org.
     driver.goto("https://wikipedia.org").await?;
-    let elem_form = driver.find(By::Id("search-form")).await?;
+    
+    let elem_form: WebElement = driver.find(By::Id("search-form")).await?;
 
     // Find element from element.
-    let elem_text = elem_form.find(By::Id("searchInput")).await?;
+    let elem_text: WebElement = elem_form.find(By::Id("searchInput")).await?;
 
     // Type in the search terms.
     elem_text.send_keys("rust").await?;
 
     // Click the search button.
-    let elem_button = elem_form.find(By::Css("button[type='submit']")).await?;
+    let elem_button: WebElement = elem_form.find(By::Css("button[type='submit']")).await?;
     elem_button.click().await?;
 
     // Look for header to implicitly wait for the page to load.
@@ -46,5 +51,7 @@ async fn run() -> color_eyre::Result<()> {
     // Always explicitly close the browser. There are no async destructors.
     driver.quit().await?;
 
+    //driver.close_window().await?;
+    //driver.close_window().await?;
     Ok(())
 }

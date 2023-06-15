@@ -13,3 +13,6 @@ tokio = "1.28.2"
 
 [[example]]
 name = "tokio_basic"
+
+[[example]]
+name = "tokio_finviz"
