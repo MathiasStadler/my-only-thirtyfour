@@ -58,10 +58,30 @@ async fn run() -> color_eyre::Result<()> {
     //wait for screener
     tokio::time::sleep(Duration::from_secs(3)).await;
 
+    // select screener all view
+    let screener_all_view_xpath: &str  = "/html/body/div[3]/table/tbody/tr[2]/td/table/tbody/tr[2]/td[8]";
+    let elem_screener_all: WebElement = driver.find(By::XPath(screener_all_view_xpath)).await?;
+    elem_screener_all.click().await?;
+
+    //wait for screener
+    tokio::time::sleep(Duration::from_secs(3)).await;
+
     //select exchange
-    let exchange_nyse_xpath="/html/body/div[3]/table/tbody/tr[3]/td/div/form/table/tbody/tr[1]/td[2]/select/option[4]";
-    let elem_exchange_nyse_xpath: WebElement = driver.find(By::XPath(exchange_nyse_xpath)).await?;
-    elem_exchange_nyse_xpath.click().await?;
+    let exchange_nyse_xpath: &str="/html/body/div[3]/table/tbody/tr[3]/td/div/form/table/tbody/tr[1]/td[2]/select/option[4]";
+    let elem_exchange_nyse: WebElement = driver.find(By::XPath(exchange_nyse_xpath)).await?;
+    elem_exchange_nyse.click().await?;
+
+    //wait for debug not necessary
+    tokio::time::sleep(Duration::from_secs(3)).await;
+
+    //select Market Cap.
+    let market_cap_xpath: &str = "/html/body/div[3]/table/tbody/tr[3]/td/div/form/table/tbody/tr[2]/td[2]/select/option[9]";
+    let elem_market_cap: WebElement = driver.find(By::XPath(market_cap_xpath)).await?;
+    elem_market_cap.click().await?;
+
+    //wait for debug not necessary
+    tokio::time::sleep(Duration::from_secs(10)).await;
+
 
     // Find element from element.
     //let elem_text: WebElement = elem_form.find(By::Id("searchInput")).await?;
