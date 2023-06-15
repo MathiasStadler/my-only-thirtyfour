@@ -41,6 +41,7 @@ async fn run() -> color_eyre::Result<()> {
     //https://dev.to/stevepryde/using-selenium-with-rust-aca
     tokio::time::sleep(Duration::from_secs(5)).await;
 
+    // site title
     println!("Title = {}", driver.title().await?);
 
     // just a test ok
@@ -66,18 +67,74 @@ async fn run() -> color_eyre::Result<()> {
     //wait for screener
     tokio::time::sleep(Duration::from_secs(3)).await;
 
+    driver.maximize_window().await?;
+
+    //wait for screener
+    tokio::time::sleep(Duration::from_secs(3)).await;
+
+
     //select exchange
     let exchange_nyse_xpath: &str="/html/body/div[3]/table/tbody/tr[3]/td/div/form/table/tbody/tr[1]/td[2]/select/option[4]";
     let elem_exchange_nyse: WebElement = driver.find(By::XPath(exchange_nyse_xpath)).await?;
     elem_exchange_nyse.click().await?;
 
-    //wait for debug not necessary
+    //wait for refresh
     tokio::time::sleep(Duration::from_secs(3)).await;
 
     //select Market Cap.
     let market_cap_xpath: &str = "/html/body/div[3]/table/tbody/tr[3]/td/div/form/table/tbody/tr[2]/td[2]/select/option[9]";
     let elem_market_cap: WebElement = driver.find(By::XPath(market_cap_xpath)).await?;
     elem_market_cap.click().await?;
+
+    //wait for refresh
+    tokio::time::sleep(Duration::from_secs(3)).await;
+
+    //select Option/Short => Optionable
+    let market_cap_xpath: &str = "/html/body/div[3]/table/tbody/tr[3]/td/div/form/table/tbody/tr[8]/td[8]/select/option[2]";
+    let elem_market_cap: WebElement = driver.find(By::XPath(market_cap_xpath)).await?;
+    elem_market_cap.click().await?;
+
+    //wait for refresh
+    tokio::time::sleep(Duration::from_secs(3)).await;
+
+    //200-Day Simple Moving Average
+    let over_200_xpath: &str = "/html/body/div[3]/table/tbody/tr[3]/td/div/form/table/tbody/tr[10]/td[6]/select/option[12]";
+    let elem_over_200: WebElement = driver.find(By::XPath(over_200_xpath)).await?;
+    elem_over_200.click().await?;
+
+    //wait for refresh
+    tokio::time::sleep(Duration::from_secs(3)).await;
+
+    //50-Day Simple Moving Average
+    let over_200_xpath: &str = "/html/body/div[3]/table/tbody/tr[3]/td/div/form/table/tbody/tr[10]/td[4]/select/option[9]";
+    let elem_over_200: WebElement = driver.find(By::XPath(over_200_xpath)).await?;
+    elem_over_200.click().await?;
+    
+    //wait for refresh
+    tokio::time::sleep(Duration::from_secs(3)).await;
+
+    // Price
+    let price_xpath: &str = "/html/body/div[3]/table/tbody/tr[3]/td/div/form/table/tbody/tr[13]/td[2]/select/option[40]";
+    let elem_price: WebElement = driver.find(By::XPath(price_xpath)).await?;
+    elem_price.click().await?;
+
+    //wait for refresh
+    tokio::time::sleep(Duration::from_secs(3)).await;
+
+    //Pattern channel up 
+    let pattern_xpath: &str = "/html/body/div[3]/table/tbody/tr[3]/td/div/form/table/tbody/tr[11]/td[8]/select/option[18]";
+    let elem_pattern: WebElement = driver.find(By::XPath(pattern_xpath)).await?;
+    elem_pattern.click().await?;
+
+    //wait for refresh
+    tokio::time::sleep(Duration::from_secs(3)).await;
+
+
+    // for what
+   //driver.status()
+
+//PEG
+//EPS
 
     //wait for debug not necessary
     tokio::time::sleep(Duration::from_secs(10)).await;
