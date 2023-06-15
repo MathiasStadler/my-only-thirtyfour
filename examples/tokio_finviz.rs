@@ -129,12 +129,28 @@ async fn run() -> color_eyre::Result<()> {
     //wait for refresh
     tokio::time::sleep(Duration::from_secs(3)).await;
 
+    //PEG over one
+    let peg_over_one_xpath: &str = "/html/body/div[3]/table/tbody/tr[3]/td/div/form/table/tbody/tr[2]/td[8]/select/option[7]";
+    let elem_peg_over_one: WebElement = driver.find(By::XPath(peg_over_one_xpath)).await?;
+    elem_peg_over_one.click().await?;
+
+    //wait for refresh
+    tokio::time::sleep(Duration::from_secs(3)).await;
+
+    //EPS year
+    let eps_year_xpath: &str = "/html/body/div[3]/table/tbody/tr[3]/td/div/form/table/tbody/tr[2]/td[8]/select/option[7]";
+    let elem_eps_year: WebElement = driver.find(By::XPath(eps_year_xpath)).await?;
+    elem_eps_year.click().await?;
+
+//wait for refresh
+tokio::time::sleep(Duration::from_secs(3)).await;
 
     // for what
    //driver.status()
 
 //PEG
-//EPS
+//EPS year
+//EPS qtr
 
     //wait for debug not necessary
     tokio::time::sleep(Duration::from_secs(10)).await;
