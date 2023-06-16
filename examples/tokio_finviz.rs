@@ -166,9 +166,11 @@ tokio::time::sleep(Duration::from_secs(3)).await;
     //https://docs.rs/thirtyfour/latest/thirtyfour/struct.WebElement.html
     let html: String = elem_result.inner_html().await?;
     println!("Inner HTML =>{}", html);
+
+
+    //write to file
     fs::write("/tmp/foo", html).expect("Unable to write file");
-
-
+ 
 
     
 
