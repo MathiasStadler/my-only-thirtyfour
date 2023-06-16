@@ -6,8 +6,10 @@
 //!
 //!     cargo run --example tokio_async
 
+
 use thirtyfour::prelude::*;
 use tokio::time::*;
+use std::fs;
 
 fn main() -> color_eyre::Result<()> {
     let rt: tokio::runtime::Runtime = tokio::runtime::Builder::new_current_thread().enable_all().build()?;
@@ -155,24 +157,20 @@ tokio::time::sleep(Duration::from_secs(3)).await;
     //wait for debug not necessary
     tokio::time::sleep(Duration::from_secs(10)).await;
 
-
-    // Find element from element.
-    //let elem_text: WebElement = elem_form.find(By::Id("searchInput")).await?;
-
-    // Type in the search terms.
-    //elem_text.send_keys("selenium").await?;
-
-    // Click the search button.
-    //let elem_button: WebElement = elem_form.find(By::Css("button[type='submit']")).await?;
-    //elem_button.click().await?;
-
-    // Look for header to implicitly wait for the page to load.
-    //driver.find(By::ClassName("firstHeading")).await?;
-    //assert_eq!(driver.title().await?, "Selenium – Wikipedia");
-
-    // Always explicitly close the browser. There are no async destructors.
     
-    driver.quit().await?;
+    // get result
+    let result_xpath: &str="/html/body/div[3]/table/tbody/tr[4]/td/div/table/tbody/tr[5]/td";
+    let elem_result: WebElement = driver.find(By::XPath(result_xpath)).await?;
+
+    //from here 
+    //https://docs.rs/thirtyfour/latest/thirtyfour/struct.WebElement.html
+    let html: String = elem_result.inner_html().await?;
+    println!("Inner HTML =>{}", html);
+    fs::write("/tmp/foo", html).expect("Unable to write file");
+
+
+
+    
 
     Ok(())
 }
