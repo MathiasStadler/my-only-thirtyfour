@@ -10,9 +10,6 @@
 use thirtyfour::prelude::*;
 use tokio::time::*;
 use std::fs;
-use std::process;
-
-
 
 fn main() -> color_eyre::Result<()> {
     let rt: tokio::runtime::Runtime = tokio::runtime::Builder::new_current_thread().enable_all().build()?;
@@ -24,20 +21,6 @@ fn main() -> color_eyre::Result<()> {
 /// /html/body/div[3]/div/table/tbody/tr/td/div[2]/table/tbody/tr[2]/td/table/tbody/tr/td[1]/table/tbody/tr[4]/td[2]
 /// /html/body/div[3]/div/table/tbody/tr/td/div[2]/table/tbody/tr[2]/td/table/tbody/tr/td[1]/table/tbody/tr[4]/td[2]
 /// /html/body/div[1]/div/div/div/div[2]/div/button[3]
-
-
-async fn set_filter_items(driver: &WebDriver,xpath_path : &str)  -> color_eyre::Result<()> {
-    //color_eyre::install()?;
-
-    println!("str {}",xpath_path);
-    //let elem_exchange_nyse: WebElement = driver.find(By::XPath(exchange_nyse_xpath)).await?;
-    //elem_exchange_nyse.click().await?;
-    driver.find(By::XPath(xpath_path)).await?.click().await?;
-    
-    Ok(())
-
-}
-
 
 async fn run() -> color_eyre::Result<()> {
     // The use of color_eyre gives much nicer error reports, including making
@@ -77,10 +60,6 @@ async fn run() -> color_eyre::Result<()> {
 
     //wait for screener
     tokio::time::sleep(Duration::from_secs(3)).await;
-
-    set_filter_items(&driver,"/html/body/div[3]/table/tbody/tr[2]/td/table/tbody/tr[2]/td[8]");
-
-    process::exit(1);
 
     // select screener all view
     let screener_all_view_xpath: &str  = "/html/body/div[3]/table/tbody/tr[2]/td/table/tbody/tr[2]/td[8]";
