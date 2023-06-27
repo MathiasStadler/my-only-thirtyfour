@@ -31,7 +31,7 @@ fn main() -> color_eyre::Result<()> {
 /// /html/body/div[3]/div/table/tbody/tr/td/div[2]/table/tbody/tr[2]/td/table/tbody/tr/td[1]/table/tbody/tr[4]/td[2]
 /// /html/body/div[1]/div/div/div/div[2]/div/button[3]
 
-
+/* function `set_filter_items` is never used
 async fn set_filter_items(driver: &WebDriver,xpath_path : &str)  -> color_eyre::Result<()> {
     //color_eyre::install()?;
 
@@ -43,7 +43,7 @@ async fn set_filter_items(driver: &WebDriver,xpath_path : &str)  -> color_eyre::
     Ok(())
 
 }
-
+*/
 
 async fn run() -> color_eyre::Result<()> {
     // The use of color_eyre gives much nicer error reports, including making
