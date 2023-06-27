@@ -7,6 +7,8 @@ edition = "2021"
 
 [dependencies]
 color-eyre = "0.6.2"
+sxd-document = "0.3.2"
+sxd-xpath = "0.4.2"
 table-extract = "0.2.3"
 thirtyfour = "0.31.0"
 tokio = "1.28.2"

@@ -7,6 +7,12 @@
 //!     cargo run --example tokio_async
 
 
+extern crate sxd_document;
+extern crate sxd_xpath;
+
+use sxd_document::parser;
+use sxd_xpath::{evaluate_xpath};
+
 use thirtyfour::prelude::*;
 use tokio::time::*;
 use std::fs;
@@ -76,11 +82,11 @@ async fn run() -> color_eyre::Result<()> {
     elem_screener.click().await?;
 
     //wait for screener
-    tokio::time::sleep(Duration::from_secs(3)).await;
+    tokio::time::sleep(Duration::from_secs(10)).await;
 
     set_filter_items(&driver,"/html/body/div[3]/table/tbody/tr[2]/td/table/tbody/tr[2]/td[8]");
 
-    process::exit(1);
+    //process::exit(1);
 
     // select screener all view
     let screener_all_view_xpath: &str  = "/html/body/div[3]/table/tbody/tr[2]/td/table/tbody/tr[2]/td[8]";
@@ -180,8 +186,13 @@ tokio::time::sleep(Duration::from_secs(3)).await;
 
     
     // get result
-    let result_xpath: &str="/html/body/div[3]/table/tbody/tr[4]/td/div/table/tbody/tr[5]/td";
+    //old
+    // let result_xpath: &str="/html/body/div[3]/table/tbody/tr[4]/td/div/table/tbody/tr[5]/td";
+    let result_xpath: &str="/html/body/div[3]/table/tbody/tr[4]/td/div/table/tbody/tr[4]/td/table/tbody/tr[2]/td[2]/a";
     let elem_result: WebElement = driver.find(By::XPath(result_xpath)).await?;
+
+
+    println!("Ticker {}", elem_result);
 
     //from here 
     //https://docs.rs/thirtyfour/latest/thirtyfour/struct.WebElement.html
@@ -193,7 +204,14 @@ tokio::time::sleep(Duration::from_secs(3)).await;
     fs::write("/home/trapapa/selenium_output.txt", html).expect("Unable to write file");
  
 
+    /*
+    let package = parser::parse("<root>hello</root>").expect("failed to parse XML");
+    let document = package.as_document();
+
+    let value = evaluate_xpath(&document, "/root").expect("XPath evaluation failed");
     
+    println!("Result XPATH {}", value.string());
+    */
 
     Ok(())
 }
