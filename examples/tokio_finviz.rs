@@ -10,13 +10,13 @@
 extern crate sxd_document;
 extern crate sxd_xpath;
 
-use sxd_document::parser;
-use sxd_xpath::{evaluate_xpath};
+
+
 
 use thirtyfour::prelude::*;
 use tokio::time::*;
 use std::fs;
-use std::process;
+
 
 
 
@@ -84,7 +84,7 @@ async fn run() -> color_eyre::Result<()> {
     //wait for screener
     tokio::time::sleep(Duration::from_secs(10)).await;
 
-    set_filter_items(&driver,"/html/body/div[3]/table/tbody/tr[2]/td/table/tbody/tr[2]/td[8]");
+    // set_filter_items(&driver,"/html/body/div[3]/table/tbody/tr[2]/td/table/tbody/tr[2]/td[8]");
 
     //process::exit(1);
 
