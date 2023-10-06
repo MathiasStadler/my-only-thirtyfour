@@ -27,7 +27,8 @@ async fn run() -> color_eyre::Result<()> {
 
 
 
-    let driver: WebDriver = WebDriver::new("http://localhost:4444", caps).await?;
+    //let driver: WebDriver = WebDriver::new("http://localhost:4444", caps).await?;
+    let driver: WebDriver = WebDriver::new("http://0.0.0.0:4444", caps).await?;
     
     // Navigate to https://wikipedia.org.
     driver.goto("https://wikipedia.org").await?;
