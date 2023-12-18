@@ -199,17 +199,17 @@ async fn run() -> color_eyre::Result<()> {
     let result_xpath: &str =
         "/html/body/div[3]/table/tbody/tr[4]/td/div/table/tbody/tr[4]/td/table/tbody/tr[2]/td[2]/a";
 
-    let elem_result: Result<WebElement, std::num::ParseIntError> = driver.find(By::XPath(result_xpath)).await?;
+    // let elem_result: Result<WebElement, std::num::ParseIntError> = driver.find(By::XPath(result_xpath)).await?;
 
-    println!("Ticker {}", elem_result);
+    // println!("Ticker {}", elem_result);
 
     //from here
     //https://docs.rs/thirtyfour/latest/thirtyfour/struct.WebElement.html
-    let html: String = elem_result.inner_html().await?;
-    println!("Inner HTML =>{}", html);
+    // let html: String = elem_result.inner_html().await?;
+    // println!("Inner HTML =>{}", html);
 
     //write to file
-    fs::write("/home/trapapa/selenium_output.txt", html).expect("Unable to write file");
+    // fs::write("/home/trapapa/selenium_output.txt", html).expect("Unable to write file");
 
     /*
     let package = parser::parse("<root>hello</root>").expect("failed to parse XML");
