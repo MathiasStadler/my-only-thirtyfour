@@ -9,7 +9,7 @@
 extern crate sxd_document;
 extern crate sxd_xpath;
 
-use std::fs;
+// use std::fs;
 use thirtyfour::prelude::*;
 use tokio::time::*;
 
@@ -65,7 +65,7 @@ async fn run() -> color_eyre::Result<()> {
     println!("Title = {}", driver.title().await?);
 
     // just a test ok
-    // driver.fullscreen_window().await?;
+    // driver.full screen_window().await?;
 
     let elem_form: WebElement = driver
         .find(By::XPath(
@@ -196,9 +196,9 @@ async fn run() -> color_eyre::Result<()> {
     // get result
     //old
     // let result_xpath: &str="/html/body/div[3]/table/tbody/tr[4]/td/div/table/tbody/tr[5]/td";
-    let result_xpath: &str =
-        "/html/body/div[3]/table/tbody/tr[4]/td/div/table/tbody/tr[4]/td/table/tbody/tr[2]/td[2]/a";
-
+    /*let result_xpath: &str =
+            "/html/body/div[3]/table/tbody/tr[4]/td/div/table/tbody/tr[4]/td/table/tbody/tr[2]/td[2]/a";
+    */
     // let elem_result: Result<WebElement, std::num::ParseIntError> = driver.find(By::XPath(result_xpath)).await?;
 
     // println!("Ticker {}", elem_result);
